@@ -1,0 +1,23 @@
+#!/usr/bin/env ansible-playbook
+-
+  name: gather facts about os, basic network seetings and hardware components on (a) particular clients(s)
+  hosts: client
+  tasks:
+    - debug:
+        msg:
+          - "facts where gathered on: {{ansible_date_time.date}} @ {{ansible_date_time.time}}"
+          - "OS Distribution is: {{ansible_distribution}}"
+          - "OS name is:  {{ansible_system}}"
+          - "OS Version is: {{ansible_distribution_version}}"
+          - "IPV4 adress is: {{ansible_default_ipv4.address}}"
+          - "netmask is: {{ansible_default_ipv4.netmask}}"
+          - "Gateway adress is: {{ansible_default_ipv4.gateway}}"
+          - "interface is: {{ansible_default_ipv4.interface}}"
+          - "MAC adress is: {{ansible_default_ipv4.macaddress}}"
+          - "connection type is: {{ansible_default_ipv4.type}}"
+          - "CPU model is: {{ansible_processor}}"
+          - "The CPU has: {{ansible_processor_cores}} cores"
+          - "One Core has: {{ansible_processor_threads_per_core}} threads"
+          - "total HD size is: {{ansible_devices.sda.size}}"
+          - "total RAM size is: {{ansible_memtotal_mb}}"
+          - "Currently installed Python version is: {{ansible_python_version}}"
